@@ -1,0 +1,152 @@
+{
+    "ConnectionConfigurations": [
+        {
+            "ConnectionId": "3",
+            "ConnectionName": "IOController",
+            "MachineId": "IOController",
+            "SocketSettings": {
+                "ConnectionType": "UDP",
+                "UdpClientSpecificSettings": {
+                    "LocalEndPoint": "0.0.0.0:32745",
+                    "RemoteEndPoint": "10.41.11.32:32745"
+                }
+            },
+            "ProtocolLogicSettings": {
+                "DgIdCommandDictionary": {
+                    "201": "RegisterToPlcStatus",
+                    "202": "PlcStatus",
+                    "203": "PlcOutput"
+                },
+                "DgCommSpecificSettings": {
+                    "ConnectionMonitoring": {
+                        "MonitoringTimeInMiliSeconds": 30000
+                    },
+                    "Handshake ": {
+                        "ResponseAwaitedWithinSeconds": 90,
+                        "UseForDatagrams": [],
+                        "MaxRetriesOnResponseMissing": 3
+                    },
+                    "Header": {
+                        "HeaderType": "HeaderB8SourceIdFirst",
+                        "SourceId": 100,
+                        "DestinationId": 27
+                    },
+                    "BigEndian ": "false",
+                    "BodyDefinitions": [
+                        {
+                            "DgId": "201",
+                            "DgName": "RegisterToPlcStatus",
+                            "DatagramMinLength": 16,
+                            "DatagramMaxLength": 65535,
+                            "Content": [
+                                {
+                                    "Name": "IpAddress",
+                                    "Datatype": "Uint32"
+                                },
+                                {
+                                    "Name": "UdpPort",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "CycleCount",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "InputCount",
+                                    "Datatype": "Byte"
+                                },
+                                {
+                                    "Name": "OutputCount",
+                                    "Datatype": "Byte"
+                                },
+                                {
+                                    "Name": "DigitalInputStatusmask",
+                                    "Array": {
+                                        "Length": 2,
+                                        "ItemDescription": {
+                                            "Datatype": "Uint16"
+                                        }
+                                    }
+                                },
+                                {
+                                    "Name": "DigitalOutputStatusmask",
+                                    "Array": {
+                                        "Length": 2,
+                                        "ItemDescription": {
+                                            "Datatype": "Uint16"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "DgId": "202",
+                            "DgName": "PlcStatus",
+                            "DatagramMinLength": 0,
+                            "DatagramMaxLength": 65535,
+                            "Content": [
+                                {
+                                    "Name": "CyclesRemain",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "InputCount",
+                                    "Datatype": "Byte"
+                                },
+                                {
+                                    "Name": "OutputCount",
+                                    "Datatype": "Byte"
+                                },
+                                {
+                                    "Name": "DigitalInput",
+                                    "BitFieldElement": {
+                                        "Size": 2,
+                                        "Items": [
+                                            {
+                                                "Name": "CrossBreakDetection",
+                                                "Index": 16
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Name": "DigitalOutput",
+                                    "Array": {
+                                        "Length": 2,
+                                        "ItemDescription": {
+                                            "Datatype": "Uint16"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "DgId": "203",
+                            "DgName": "PlcOutput",
+                            "DatagramMinLength": 0,
+                            "DatagramMaxLength": 65535,
+                            "Content": [
+                                {
+                                    "Name": "Offset",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "DigitalOutputmask",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "DigitalOutput",
+                                    "Datatype": "Uint16"
+                                },
+                                {
+                                    "Name": "DigitalOutputBlinkMask",
+                                    "Datatype": "Uint16"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
