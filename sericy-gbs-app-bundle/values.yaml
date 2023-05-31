@@ -1,0 +1,5 @@
+global:
+  development_phase: dev
+  public_domain: subchart.com
+  sericy_client: gb
+  gb_env: default
