@@ -1,0 +1,10 @@
+global:
+  development_phase: dev
+  public_domain: dev.gb365.sericy.io
+  sericy_client: dev
+  gb_env: dev
+
+tags:
+  wihtFSE: true
+  simulation: true
+  marking: true
