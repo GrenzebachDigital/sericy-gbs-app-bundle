@@ -1,0 +1,5 @@
+global:
+  development_phase: dev
+  public_domain: edge01.local.sericy.io
+  sericy_client: edge01
+  gb_env: edge01

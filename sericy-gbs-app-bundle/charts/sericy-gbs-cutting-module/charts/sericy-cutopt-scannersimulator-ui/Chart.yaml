@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.42.0-beta.15
+description: UI for the defect scanner simulator
+name: sericy-cutopt-scannersimulator-ui
+type: application
+version: 0.2.0

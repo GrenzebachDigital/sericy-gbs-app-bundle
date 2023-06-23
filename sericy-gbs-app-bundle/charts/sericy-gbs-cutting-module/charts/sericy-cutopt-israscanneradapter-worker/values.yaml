@@ -1,0 +1,31 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service_type: worker
+service_name: sericy-cutopt-israscanneradapter-worker
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+  docker_registry_domain: docker-registry.grenzebach.com
+  name: sericy-cutopt-israscanneradapter-worker
+  tag: "0.80.0-beta.6"
+
+service:
+  type: ClusterIP
+  port: 8080
+  sericy_internal_auth_port: 5000
+
+resources:
+   limits:
+     memory: 150Mi
+   requests:
+     cpu: 100m
+     memory: 120Mi
+
+global:
+  development_phase: dev
+  public_domain: subchart.com
+  sericy_client: gb
+  gb_env: default

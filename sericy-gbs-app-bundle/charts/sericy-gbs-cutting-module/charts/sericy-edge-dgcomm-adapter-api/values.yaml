@@ -1,0 +1,40 @@
+# Default values for sericy-edge-packetsender-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service_type: api
+service_name: sericy-edge-dgcomm-adapter-api
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+  docker_registry_domain: docker-registry.grenzebach.com
+  name: sericy-edge-dgcomm-adapter-api
+  tag: "5.54.0-beta.1"
+
+
+defaultConfig: .Files.Get "scripts\DefaultConfig.json"
+
+service:
+  type: ClusterIP
+  port: 8080
+  sericy_internal_auth_port: 5000
+
+ingress:
+  enabled: true
+  proxy_body_size: 15m
+  proxy_read_timeout: 60
+
+resources:
+   limits:
+     memory: 120Mi
+   requests:
+     cpu: 100m
+     memory: 90Mi
+
+global:
+  development_phase: dev
+  public_domain: subchart.com
+  sericy_client: gb
+  gb_env: default

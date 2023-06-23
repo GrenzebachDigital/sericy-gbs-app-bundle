@@ -1,0 +1,23 @@
+{{ if ne .Values.service_type "db" }}
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.service_name }}-service
+  labels: {{- include "labels.standard" . | nindent 4 }}
+spec:
+  selector:
+    app: {{ .Values.service_name}}
+    phase: {{ .Values.global.development_phase }}
+  type: ClusterIP
+  ports:
+{{ if ne .Values.service_type "ui" }}
+  - protocol: TCP
+    port: {{ .Values.service.sericy_internal_auth_port}}
+    targetPort: {{ .Values.service.sericy_internal_auth_port}}
+    name: tcp-internal-auth
+{{ end }}
+  - protocol: TCP
+    port: 80
+    targetPort: {{ .Values.service.port}}
+    name: tcp-80
+{{ end }}

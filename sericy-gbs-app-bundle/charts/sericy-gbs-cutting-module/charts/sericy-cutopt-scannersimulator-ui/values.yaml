@@ -1,0 +1,37 @@
+# Default values for sericy-cutopt-scannersimulator-ui.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service_type: ui
+service_name: sericy-cutopt-scannersimulator-ui
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+  docker_registry_domain: docker-registry.grenzebach.com
+  name: sericy-cutopt-scannersimulator-ui
+  tag: "0.42.0-beta.15"
+
+service:
+  type: ClusterIP
+  port: 8080
+  sericy_internal_auth_port: 5000
+
+ingress:
+  enabled: true
+  proxy_body_size: 15m
+  proxy_read_timeout: 60
+
+resources:
+   limits:
+     memory: 15Mi
+   requests:
+     cpu: 3m
+     memory: 10Mi
+
+global:
+  development_phase: dev
+  public_domain: subchart.com
+  sericy_client: gb
+  gb_env: default

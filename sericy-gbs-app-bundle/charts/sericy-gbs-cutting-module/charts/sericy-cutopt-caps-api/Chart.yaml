@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.278.0
+description: Managing the caps for production
+name: sericy-cutopt-caps-api
+type: application
+version: 0.1.0

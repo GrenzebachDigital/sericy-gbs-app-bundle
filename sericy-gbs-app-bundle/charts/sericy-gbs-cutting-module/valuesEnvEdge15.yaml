@@ -1,0 +1,5 @@
+global:
+  development_phase: dev
+  public_domain: edge15.gb365.sericy.io
+  sericy_client: edge15
+  gb_env: edge15

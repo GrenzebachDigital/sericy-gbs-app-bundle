@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.80.0
+description: Adapter for an Isra scanner
+name: sericy-cutopt-israscanneradapter-worker
+type: application
+version: 0.1.0

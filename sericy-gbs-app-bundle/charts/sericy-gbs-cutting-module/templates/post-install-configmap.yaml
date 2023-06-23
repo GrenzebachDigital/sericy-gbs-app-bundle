@@ -1,0 +1,20 @@
+{{ $trimmedRelease := .Release.Name | trimSuffix "-dev" }}
+{{- if eq $trimmedRelease .Chart.Name }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.global.development_phase }}-defaultconfig-configmap
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install, post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded,before-hook-creation,hook-failed
+data:
+  {{- range $path, $_ :=  .Files.Glob  "configFiles/*.json" }}    
+  {{ $path | trimPrefix "configFiles/" }}: |- 
+    {{ $.Files.Get $path | nindent 4 }}
+  {{ end }}
+  uploadDefaultConfig.sh:  |-
+    {{ .Files.Get "scripts/uploadDefaultConfig.sh" | nindent 4 }}
+{{- end }}
