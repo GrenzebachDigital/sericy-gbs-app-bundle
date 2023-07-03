@@ -4,6 +4,6 @@ dependencies:
   version: 0.1.0-beta.14
 - name: sericy-gbs-mfo-bundle
   repository: https://helm-chart-repo.sericy.io/
-  version: 0.1.0-beta.1
-digest: sha256:8ebbcf9e10689f725d0b2cf288a7c0674da9622d3804345db47e59893e91b3fe
-generated: "2023-07-03T16:55:32.076996+02:00"
+  version: 0.1.0-beta.3
+digest: sha256:939faa948215c76bbe03bbf5e2a16276c36717719019f611e7c3be79e9f447f4
+generated: "2023-07-03T17:06:20.3691509+02:00"
