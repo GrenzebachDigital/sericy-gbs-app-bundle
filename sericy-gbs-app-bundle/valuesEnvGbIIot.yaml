@@ -6,5 +6,5 @@ global:
 
 tags:
   wihtFSE: true
-  simulation: false
+  simulation: true
   marking: true

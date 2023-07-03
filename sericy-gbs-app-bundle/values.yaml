@@ -1,17 +1,3 @@
-sericy-gbs-cutting-module:
-  sericy-cutopt-glassribbon-api:
-    image:
-      tag: "0.421.0-beta.13"
-  sericy-cutopt-cuttingbridges-api:
-    image:
-      tag:  "0.83.0-beta.10"
-  sericy-cutopt-ui :
-    image:
-      tag: "0.133.0-beta.21"
-  sericy-cutopt-markingbridges-api:
-    image:
-      tag: "0.1.0-beta.8"
-
 global:
   development_phase: dev
   public_domain: subchart.com
