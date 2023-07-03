@@ -4,11 +4,12 @@ global:
   sericy_client: dev
   gb_env: dev
 
-scope:
-  cutopt: true
-  mfopt: true
-
 tags:
+  #CutOpt tags
   wihtFSE: true
   simulation: true
   marking: true
+
+  #MfOpt tags
+  fullMfopt: true
+  customerLine: false

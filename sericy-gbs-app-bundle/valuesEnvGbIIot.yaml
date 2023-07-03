@@ -5,6 +5,11 @@ global:
   gb_env: gbiiot
 
 tags:
+  #CutOpt tags
   wihtFSE: true
   simulation: true
   marking: true
+
+  #MfOpt tags
+  fullMfopt: true
+  customerLine: false
