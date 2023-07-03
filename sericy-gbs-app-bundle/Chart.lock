@@ -1,6 +1,6 @@
 dependencies:
 - name: sericy-gbs-cutting-module
   repository: https://helm-chart-repo.sericy.io/
-  version: 0.1.0-beta.11
-digest: sha256:cacd06886101293a0710e61ee11707894652db1b3e44d8c1d339c77c3abbd1b6
-generated: "2023-07-03T14:00:23.5664453+02:00"
+  version: 0.1.0-beta.13
+digest: sha256:88d05992419cc1af796ad35bd2b205295df790c917215610d65be6ff508d056c
+generated: "2023-07-03T14:33:58.46079+02:00"
