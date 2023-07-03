@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.91.0-beta.9
-description: Defect simulator
-name: sericy-cutopt-scannersimulator-api
-type: application
-version: 0.2.0

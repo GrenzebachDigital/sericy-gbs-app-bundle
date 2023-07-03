@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.421.0
-description: virtual image of the endless ribbon in the cutting area
-name: sericy-cutopt-glassribbon-api
-type: application
-version: 0.1.0

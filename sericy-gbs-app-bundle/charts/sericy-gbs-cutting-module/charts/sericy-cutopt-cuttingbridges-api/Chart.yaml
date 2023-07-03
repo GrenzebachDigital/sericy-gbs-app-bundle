@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.83.0
-description: Interaction with the cuttingbridges
-name: sericy-cutopt-cuttingbridges-api
-type: application
-version: 0.1.0

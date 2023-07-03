@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.290.0
-description: defectoptimizer
-name: sericy-cutopt-defectoptimizer-api
-type: application
-version: 0.1.0
