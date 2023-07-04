@@ -1,0 +1,160 @@
+{{- if not .Values.service.enableDaemonSet }}
+{{- if not (eq .Values.service_type "db") }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service_name }}-{{ default .Chart.AppVersion .Values.image.tag}-deployment
+  labels: {{- include "labels.standard" . | nindent 4 }}
+    app: {{ .Values.service_name }}
+    phase: {{ .Values.global.development_phase }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.service_name }}
+      phase: {{ .Values.global.development_phase }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service_name }}
+        phase: {{ .Values.global.development_phase }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - name: {{ .Values.image.name }}-default
+        image: {{ .Values.image.docker_registry_domain }}/{{ .Values.image.name }}:{{.Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+{{ if ne .Values.service_type "ui" }}
+        - containerPort: {{ .Values.service.sericy_internal_auth_port }}
+{{ end }}
+        resources:
+          requests:
+            memory: {{  .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+          limits:
+            memory: {{  .Values.resources.limits.memory }}
+            {{- if (.Values.resources.limits.cpu)}}
+            cpu: {{  .Values.resources.limits.cpu }}
+            {{- end}}
+{{- else if .Values.enableHealthCheck }}
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: {{ .Values.livenessProbe.port }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: {{ .Values.readinessProbe.port }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+{{- end }}
+        env:
+        {{- range  $key, $value := .Values.envVariables }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+        {{- end }}
+        - name: GB_ENV
+          value: {{ .Values.global.gb_env }}
+        - name: SERICY_SERVICE_COMPONENT_VERSION
+          value: {{ default .Chart.AppVersion .Values.image.tag}
+        - name: SERICY_CLIENT
+          value: {{ .Values.global.sericy_client }}
+        - name: SERICY_PUBLIC_DOMAIN
+          value: {{ .Values.global.public_domain }}
+{{ if ne .Values.service_type "ui" }}
+        - name: ASPNETCORE_URLS
+          value: "http://*:{{ .Values.service.port }};http://*:{{ .Values.service.sericy_internal_auth_port }}"
+        - name: SERICY_INTERNAL_AUTH_PORT
+          value: "{{ .Values.service.sericy_internal_auth_port }}"
+        - name: DOTNET_ENVIRONMENT
+          value: {{ .Values.global.development_phase }}
+        - name: ASPNETCORE_ENVIRONMENT
+          value: {{ .Values.global.development_phase}}
+{{ end }}
+        - name: SECRET_SERICY_SECURITY_API_SSL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-sericy-security-api
+              key: ssl.key
+        - name: SECRET_SERICY_SECURITY_API_SSL_CERT
+          valueFrom:
+            secretKeyRef:
+              name: secret-sericy-security-api
+              key: ssl.cert
+{{- if .Values.selfsigned_environment }}
+        - mountPath: "/usr/local/share/ca-certificates/root.ca.crt.pem"
+          name: sericyio-ssl
+          subPath: ca.crt
+          readOnly: true
+{{- end }}
+{{- end }}
+{{- if eq .Values.service_type "ui" }}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - mountPath: /usr/share/nginx/html/sericy-version.json
+          name: sericy-version
+          subPath: sericy-version.json
+{{- if .Values.selfsigned_environment }}
+        - mountPath: "/usr/local/share/ca-certificates/root.ca.crt.pem"
+          name: sericyio-ssl
+          subPath: ca.crt
+          readOnly: true
+{{- end }}
+{{- end }}
+
+{{- if eq .Values.service_type "ui" }}
+      initContainers:
+      - name: init-myservice
+        image: docker-registry.grenzebach.com/busybox:1.28
+        command: ['sh', '-c', 'echo { \"version\":\"{{ default .Chart.AppVersion .Values.image.tag}\" } > /usr/share/nginx/html/sericy-version.json']
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: sericy-version
+{{- if .Values.selfsigned_environment }}
+        - mountPath: "/usr/local/share/ca-certificates/root.ca.crt.pem"
+          name: sericyio-ssl
+          subPath: ca.crt
+          readOnly: true
+{{- end }}
+{{- end }}
+{{- if eq .Values.service_type "ui" }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sericy-gbs-one-ui-dev-configmap
+      - emptyDir: {}
+        name: sericy-version
+{{- if .Values.selfsigned_environment }}
+      - name: sericyio-ssl
+        secret:
+          secretName: sericyio-secret
+{{- end }}
+{{- end }}
+{{- if eq .Values.service_type "api" }}
+{{- if .Values.selfsigned_environment }}
+        - mountPath: "/usr/local/share/ca-certificates/root.ca.crt.pem"
+          name: sericyio-ssl
+          subPath: ca.crt
+          readOnly: true
+{{- end }}
+{{- end }}
+{{- if eq .Values.service_type "api" }}
+{{- if .Values.selfsigned_environment }}
+      - name: sericyio-ssl
+        secret:
+          secretName: sericyio-secret
+{{- end }}
+{{- end }}
+
