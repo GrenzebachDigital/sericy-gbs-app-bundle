@@ -14,7 +14,7 @@ tags:
   #CutOpt tags
   wihtFSE: true
   simulation: true
-  marking: true
+  marking: false
 
   #MfOpt tags
   fullMfopt: false
