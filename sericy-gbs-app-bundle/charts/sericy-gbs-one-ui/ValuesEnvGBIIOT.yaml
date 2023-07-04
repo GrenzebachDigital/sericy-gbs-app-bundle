@@ -1,0 +1,5 @@
+global:
+  development_phase: dev
+  public_domain: dev.gbiiot.sericy.io
+  sericy_client: dev
+  gb_env: dev
