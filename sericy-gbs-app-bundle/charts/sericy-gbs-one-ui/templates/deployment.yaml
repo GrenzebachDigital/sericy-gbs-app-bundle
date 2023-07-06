@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.service_name }}-{{ default .Chart.AppVersion .Values.image.tag}-deployment
+  name: {{ .Values.service_name }}-{{ default .Chart.AppVersion .Values.image.tag }}-deployment
   labels: {{- include "labels.standard" . | nindent 4 }}
     app: {{ .Values.service_name }}
     phase: {{ .Values.global.development_phase }}
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.image.name }}-default
-        image: {{ .Values.image.docker_registry_domain }}/{{ .Values.image.name }}:{{.Values.image.tag}}
+        image: {{ .Values.image.docker_registry_domain }}/{{ .Values.image.name }}:{{ default .Chart.AppVersion .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.port }}
@@ -67,7 +67,7 @@ spec:
         - name: GB_ENV
           value: {{ .Values.global.gb_env }}
         - name: SERICY_SERVICE_COMPONENT_VERSION
-          value: {{ default .Chart.AppVersion .Values.image.tag}
+          value: {{ default .Chart.AppVersion .Values.image.tag }}
         - name: SERICY_CLIENT
           value: {{ .Values.global.sericy_client }}
         - name: SERICY_PUBLIC_DOMAIN
@@ -118,7 +118,7 @@ spec:
       initContainers:
       - name: init-myservice
         image: docker-registry.grenzebach.com/busybox:1.28
-        command: ['sh', '-c', 'echo { \"version\":\"{{ default .Chart.AppVersion .Values.image.tag}\" } > /usr/share/nginx/html/sericy-version.json']
+        command: ['sh', '-c', 'echo { \"version\":\"{{ default .Chart.AppVersion .Values.image.tag }}\" } > /usr/share/nginx/html/sericy-version.json']
         volumeMounts:
         - mountPath: /usr/share/nginx/html
           name: sericy-version
