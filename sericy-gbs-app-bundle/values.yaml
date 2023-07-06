@@ -1,5 +1,23 @@
+#CutOpt
+sericy-cutopt-ui:
+  service_name: sericy-cutopt-ui
+  image:
+    tag: "0.133.0-beta.56"
+sericy-cutopt-caps-api:
+  service_name: sericy-cutopt-caps-api
+  image:
+    tag: "0.278.0-beta.32"
+sericy-cutopt-glassribbon-api:
+  service_name: sericy-cutopt-glassribbon-api
+  image:
+    tag: "0.421.0-beta.28"
+sericy-cutopt-glassribbon-ui:
+  service_name: sericy-cutopt-glassribbon-ui
+  image:
+    tag: "0.282.0-beta.43"
+
 global:
   development_phase: dev
   public_domain: subchart.com
-  sericy_client: gb
   gb_env: default
+  sericy_client: gb
