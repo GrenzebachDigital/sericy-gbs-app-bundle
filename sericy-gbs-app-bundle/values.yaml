@@ -19,10 +19,10 @@ sericy-gbs-mfo-module:
       tag: "0.345.0-beta.45"
   sericy-mfopt-line-ui:
     image:
-      tag: "0.128.0-beta.40"
+      tag: "0.128.0-beta.39"
   sericy-handling-devices-api:
     image:
-      tag: "0.68.0-beta.27"
+      tag: "0.68.0-beta.28"
 
 global:
   development_phase: dev
