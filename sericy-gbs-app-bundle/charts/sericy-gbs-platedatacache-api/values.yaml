@@ -1,0 +1,36 @@
+# Default values for sericy-gbs-platedatacache-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service_type: api
+service_name: sericy-gbs-platedatacache-api
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+  docker_registry_domain: docker-registry.grenzebach.com
+  name: sericy-gbs-platedatacache-api
+
+service:
+  type: ClusterIP
+  port: 8080
+  sericy_internal_auth_port: 5000
+
+ingress:
+  enabled: true
+  proxy_body_size: 15m
+  proxy_read_timeout: 60
+
+resources:
+   limits:
+     memory: 150Mi
+   requests:
+     cpu: 100m
+     memory: 120Mi
+
+global:
+  development_phase: dev
+  public_domain: subchart.com
+  sericy_client: gb
+  gb_env: default
