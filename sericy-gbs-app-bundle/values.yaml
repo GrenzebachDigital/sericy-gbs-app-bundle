@@ -2,7 +2,7 @@
 sericy-gbs-cutting-module:
   sericy-cutopt-ui:
     image:
-      tag: "0.133.0-beta.56"
+      tag: "0.133.0-beta.60"
   sericy-cutopt-caps-api:
     image:
       tag: "0.278.0-beta.34"
@@ -16,13 +16,13 @@ sericy-gbs-cutting-module:
 sericy-gbs-mfo-module:
   sericy-mfopt-line-api:
     image:
-      tag: "0.345.0-beta.45"
+      tag: "0.345.0-beta.50"
   sericy-mfopt-line-ui:
     image:
-      tag: "0.128.0-beta.39"
+      tag: "0.128.0-beta.41"
   sericy-handling-devices-api:
     image:
-      tag: "0.68.0-beta.28"
+      tag: "0.68.0-beta.31"
 
 global:
   development_phase: dev
