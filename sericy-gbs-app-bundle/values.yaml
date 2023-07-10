@@ -16,7 +16,7 @@ sericy-gbs-cutting-module:
 sericy-gbs-mfo-module:
   sericy-mfopt-line-api:
     image:
-      tag: "0.345.0-beta.45"
+      tag: "0.345.0-beta.46"
   sericy-mfopt-line-ui:
     image:
       tag: "0.128.0-beta.39"
