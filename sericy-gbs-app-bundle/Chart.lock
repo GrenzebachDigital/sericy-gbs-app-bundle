@@ -16,6 +16,6 @@ dependencies:
   version: 0.47.0-beta.32
 - name: sericy-diag-shopfloor-app
   repository: https://helm-chart-repo.sericy.io/
-  version: 1.2.0-beta.3
-digest: sha256:698e0131490e2e18459e9c442a573d3ca3b6b9c2b2f0d613fe446036b7683b03
-generated: "2023-07-10T17:10:28.6547988+02:00"
+  version: 1.2.0-beta.4
+digest: sha256:54ad9d990b4d551b7283c553d73944c9fc64c1d08fbc6f5c743881e6a108c85c
+generated: "2023-07-11T10:59:52.1115978+02:00"
