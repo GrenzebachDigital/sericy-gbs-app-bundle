@@ -7,7 +7,7 @@ dependencies:
   version: 0.1.0-beta.5
 - name: sericy-om-orders-manager-app
   repository: https://helm-chart-repo.sericy.io/
-  version: 0.1.0-beta.3
+  version: 0.1.0-beta.7
 - name: sericy-gbs-one-ui
   repository: file://./charts/sericy-gbs-one-ui
   version: 0.1.0-beta.36
@@ -17,5 +17,5 @@ dependencies:
 - name: sericy-diag-shopfloor-app
   repository: https://helm-chart-repo.sericy.io/
   version: 1.2.0-beta.3
-digest: sha256:fadd8ed784ec2723cdf0eb9027cf39f6caa852416f14d5fa9b84b78d8423e71f
-generated: "2023-07-10T15:55:43.7410426+02:00"
+digest: sha256:698e0131490e2e18459e9c442a573d3ca3b6b9c2b2f0d613fe446036b7683b03
+generated: "2023-07-10T17:10:28.6547988+02:00"
