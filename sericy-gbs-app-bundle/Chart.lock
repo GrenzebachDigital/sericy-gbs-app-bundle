@@ -13,9 +13,9 @@ dependencies:
   version: 0.1.0-beta.36
 - name: sericy-gbs-platedatacache-api
   repository: file://./charts/sericy-gbs-platedatacache-api
-  version: 0.47.0-beta.32
+  version: 0.47.0-beta.36
 - name: sericy-diag-shopfloor-app
   repository: https://helm-chart-repo.sericy.io/
   version: 1.2.0-beta.5
-digest: sha256:bb5c936a54e81376263caa8a987277b65ae27f31c71eb72ee3978d83bb0f5564
-generated: "2023-07-11T12:05:07.5506248+02:00"
+digest: sha256:423e599ebcab8e9b90590cef39f4e37cd2b260f9d382a7bd187153d85ea52f75
+generated: "2023-07-11T12:21:13.5362105+02:00"
