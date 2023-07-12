@@ -14,4 +14,9 @@ tags:
   fullMfopt: true
   customerLine: false
 
+  #General tags
+  gbs: true
+  cutopt: false
+  mfopt: false
+  handling: false
   
