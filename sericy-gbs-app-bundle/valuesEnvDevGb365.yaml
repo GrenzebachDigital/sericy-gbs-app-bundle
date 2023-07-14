@@ -19,7 +19,8 @@ tags:
   cutopt: false
   mfopt: false
   handling: false
-  
+
+# This has to be removed once this is solved by using tags gbs, cutting, ...  
 sericy-om-orders-manager-app:
   sericy-om-orders-manager-api: 
     envVariables:

@@ -19,4 +19,26 @@ tags:
   cutopt: false
   mfopt: false
   handling: false
+
+# This has to be removed once this is solved by using tags gbs, cutting, ...
+sericy-om-orders-manager-app:
+  sericy-om-orders-manager-api: 
+    envVariables:
+      ServiceName: sericy-om-orders-manager-api
+      Authentication__ApiName: sericy-om-orders-manager-api
+      Authentication__Audience: sericy-om-orders-manager-api
+      Authentication__ClientID: sericy-om-orders-manager-api
+      ServiceBasePath: /sericy-om-orders-manager-api
+      DatabaseSettings__ConnectionString: Host=sericy-common-postgres-db-service;Port=5432;User Id=postgres;Password=postgres;Database=sericy-om-orders-manager-api;
+      ModuleSection__PlausibilityCheckEndpoint: module-order/pre-verify-check
+      ModuleSection__PreActivationCheckEndpoint: module-order/pre-activation-check
+      ModuleSection__Settings__0__Name: cutopt
+      ModuleSection__Settings__0__ModuleApiBaseUrl: http://sericy-cutopt-defectoptimizer-api-service/sericy-cutopt-defectoptimizer-api/
+      ModuleSection__Settings__0__Sequence: 1
+      ModuleSection__Settings__1__Name: mfopt
+      ModuleSection__Settings__1__ModuleApiBaseUrl: http://sericy-mfopt-line-api-service/sericy-mfopt-line-api/
+      ModuleSection__Settings__1__Sequence: 2
+      ModuleSection__Settings__2__Name: handling
+      ModuleSection__Settings__2__ModuleApiBaseUrl: http://sericy-om-handling-testclient-api-service/sericy-om-handling-testclient-api/
+      ModuleSection__Settings__2__Sequence: 3
   
